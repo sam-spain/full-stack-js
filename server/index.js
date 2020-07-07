@@ -15,6 +15,6 @@ app.use(v1Router)
 app.get('*', (request, response) => {
     response.sendFile(path.resolve(__dirname, 'public/index.html'))
 })
-app.listen(8081, () => {
+app.listen(8080, () => {
     console.log(`connected to DB: ${config.databaseUrl}`)
 })
