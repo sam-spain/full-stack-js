@@ -7,7 +7,7 @@ import Webpack from 'webpack'
 import WebpackConfig from '../webpack.config'
 import WebpackDevMiddleware from 'webpack-dev-middleware'
 
-Mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
+Mongoose.connect(config.databaseUrl, { useNewUrlParser: true })
 const app = Express()
 const compiler = Webpack(WebpackConfig)
 app.use(WebpackDevMiddleware(compiler))
