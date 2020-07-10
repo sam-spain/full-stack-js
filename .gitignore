@@ -2,3 +2,5 @@ node_modules/
 package-lock.json
 .env
 dist/
+server/public/app.css
+server/public/app.js
