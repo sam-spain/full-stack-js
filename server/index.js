@@ -1,4 +1,4 @@
-import Express, { response } from 'express'
+import Express from 'express'
 import Mongoose from 'mongoose'
 import config from '@config'
 import path from 'path'
