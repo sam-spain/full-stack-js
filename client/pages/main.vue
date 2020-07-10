@@ -1,5 +1,5 @@
 <template>
-    <h1>The Main Component!</h1>
+    <h1 class="text-center">The Main Component!</h1>
 </template>
 
 <script>
