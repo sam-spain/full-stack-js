@@ -1,16 +1,16 @@
-import Express from 'express'
+import express from 'express'
 import Mongoose from 'mongoose'
 import config from '@config'
 import path from 'path'
 import v1Router from '@routes'
-import Webpack from 'webpack'
+import webpack from 'webpack'
 import WebpackConfig from '../webpack.config'
-import WebpackDevMiddleware from 'webpack-dev-middleware'
+import webpackDevMiddleware from 'webpack-dev-middleware'
 
 Mongoose.connect(config.databaseUrl, { useNewUrlParser: true })
-const app = Express()
-const compiler = Webpack(WebpackConfig)
-app.use(WebpackDevMiddleware(compiler))
+const app = express()
+const compiler = webpack(WebpackConfig)
+app.use(webpackDevMiddleware(compiler))
 app.use(v1Router)
 app.get('*', (request, response) => {
     response.sendFile(path.resolve(__dirname, 'public/index.html'))
