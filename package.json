@@ -8,12 +8,15 @@
     "prettier": "prettier --write './**/*.js'",
     "build": "npm run build:client && npm run build:server",
     "build:client": "webpack --mode=production",
-    "build:server": "babel server/ --out-dir dist/ --copy-files"
+    "build:server": "babel server/ --out-dir dist/ --copy-files",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vue/cli-plugin-unit-jest": "^4.4.6",
+    "@vue/test-utils": "^1.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.21",
@@ -33,5 +36,8 @@
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-middleware": "^3.7.2"
+  },
+  "nodemonConfig": {
+    "ignore": ["__tests__/*"]
   }
 }
