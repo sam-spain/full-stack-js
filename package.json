@@ -10,7 +10,8 @@
     "build:server": "babel server/ --out-dir dist/ --copy-files",
     "test": "jest",
     "prettier-css": "prettier --write './**/*.css'",
-    "prettier-js": "prettier --write './**/*.js'"
+    "prettier-js": "prettier --write './**/*.js'",
+    "prettier-vue": "prettier --write './**/*.vue'"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +22,8 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.21",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-router": "^3.3.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
