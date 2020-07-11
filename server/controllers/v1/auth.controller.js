@@ -6,5 +6,5 @@ const register = (request, response) => {}
 
 export default {
     login,
-    register,
+    register
 }
