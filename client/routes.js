@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router'
 import Login from '@web-page/Login.vue'
 import Register from '@web-page/Register.vue'
+import Home from '@web-page/Home.vue'
 
 export default new VueRouter({
     mode: 'history',
@@ -12,6 +13,10 @@ export default new VueRouter({
         {
             path: '/auth/register',
             component: Register
+        },
+        {
+            path: '/',
+            component: Home
         }
     ]
 })

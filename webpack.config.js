@@ -37,7 +37,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin,
+        new webpack.HotModuleReplacementPlugin(),
         new VueLoaderPlugin(),
         new MiniExtractCssPlugin({
             filename: 'app.css'
