@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec babel-node server/index",
-    "prettier": "prettier --write './**/*.js'",
     "build": "npm run build:client && npm run build:server",
     "build:client": "webpack --mode=production",
     "build:server": "babel server/ --out-dir dist/ --copy-files",
-    "test": "jest"
+    "test": "jest",
+    "prettier-css": "prettier --write './**/*.css'",
+    "prettier-js": "prettier --write './**/*.js'"
   },
   "keywords": [],
   "author": "",
