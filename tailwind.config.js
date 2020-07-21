@@ -1,11 +1,11 @@
 module.exports = {
-    purge: [],
-    theme: {
-        fontFamily: {
-            primary: ['Amiko']
-        },
-        extend: {}
+  purge: [],
+  theme: {
+    fontFamily: {
+      primary: ['Amiko']
     },
-    variants: {},
-    plugins: []
-}
+    extend: {}
+  },
+  variants: {},
+  plugins: []
+};
