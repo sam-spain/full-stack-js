@@ -11,7 +11,8 @@
     "test": "jest",
     "prettier-css": "prettier --write './**/*.css'",
     "prettier-js": "prettier --write './**/*.js'",
-    "prettier-vue": "prettier --write './**/*.vue'"
+    "prettier-vue": "prettier --write './**/*.vue'",
+    "lint": "eslint --ext .js,.vue client"
   },
   "keywords": [],
   "author": "",
@@ -33,6 +34,8 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "css-loader": "^3.6.0",
+    "eslint": "^7.5.0",
+    "eslint-plugin-vue": "^7.0.0-beta.0",
     "mini-css-extract-plugin": "^0.9.0",
     "nodemon": "^2.0.4",
     "postcss": "^7.0.32",
