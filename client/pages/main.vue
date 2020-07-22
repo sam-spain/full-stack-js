@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div class="h-2 w-full bg-blue-400"></div>
+    <div class="h-2 w-full bg-blue-400" />
     <div class="w-full h-12 flex items-center justify-between px-6">
-      <div class="text-blue-400">MEVN</div>
+      <div class="text-blue-400">
+        MEVN
+      </div>
       <div>
         <router-link class="no-underline text-blue-700" to="/auth/login">
           Sign In
