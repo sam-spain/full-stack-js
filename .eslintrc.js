@@ -12,8 +12,9 @@ module.exports = {
       'error',
       {
         singleline: 'never',
-        multiline: 'never'
+        multiline: 'always'
       }
-    ]
+    ],
+    'vue/html-self-closing': 'off'
   }
 };
