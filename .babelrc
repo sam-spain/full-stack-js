@@ -10,10 +10,12 @@
                     "./"
                 ],
                 "alias": {
+                    "@": "./",
                     "@config": "./server/config",
                     "@routes": "./server/routes",
                     "@controllers": "./server/controllers",
-                    "@web-page" : "./client/pages"
+                    "@web-page" : "./client/pages",
+                    "@components" : "./client/components"
                 }
             }
         ]

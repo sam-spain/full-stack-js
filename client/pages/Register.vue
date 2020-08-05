@@ -1,52 +1,85 @@
 <template>
   <div class="container my-16 w-full mx-auto">
-    <div class="max-w-xs mx-auto">
+    <div class="max-w-md mx-auto">
       <h2 class="text-center text-3xl text-blue-700">
         Register
       </h2>
-      <div class="w-full bg-white shadow rounded-sm mt-5 p-12">
-        <label
-          class="block text-gray-700 text-sm font-bold mb-2"
-          for="register-username"
+      <ValidationObserver v-slot="{ handleSubmit }">
+        <form
+          class="w-full bg-white shadow rounded-sm mt-5 p-12"
+          @submit.prevent="handleSubmit(onSubmit)"
         >
-          Username
-        </label>
-        <input
-          id="register-username"
-          type="text"
-          class="w-full bg-gray-200 py-3 text-blue-400 p-3 mb-5"
-          placeholder="Your Name Here"
-        />
-        <label
-          class="block text-gray-700 text-sm font-bold mb-2"
-          for="register-password"
-        >
-          Password
-        </label>
-        <input
-          id="register-password"
-          type="password"
-          class="w-full bg-gray-200 py-3 text-blue-400 p-3 mb-5"
-          placeholder="Your Email Here"
-        />
-        <label
-          class="block text-gray-700 text-sm font-bold mb-2"
-          for="register-email"
-        >
-          Email
-        </label>
-        <input
-          id="register-email"
-          type="email"
-          class="w-full bg-gray-200 py-3 text-blue-400 p-3"
-          placeholder="Your Password Here"
-        />
-        <button
-          class="w-full mt-3 py-3 bg-blue-600 hover:bg-blue-400 text-white rounded-sm"
-        >
-          Register
-        </button>
-      </div>
+          <validation-provider
+            v-slot="{ errors }"
+            name="name"
+            rules="required|alpha_dash"
+          >
+            <text-input
+              v-model="model.name"
+              :value="model.name"
+              input-placeholder="Your name here!"
+              input-id="name"
+              label-text="Username"
+              :error-text="errors[0]"
+            />
+          </validation-provider>
+          <validation-provider
+            v-slot="{ errors }"
+            name="email"
+            rules="required|email"
+          >
+            <text-input
+              v-model="model.email"
+              :value="model.email"
+              input-placeholder="Your email here!"
+              input-type="email"
+              input-id="email"
+              label-text="Email"
+              :error-text="errors[0]"
+            />
+          </validation-provider>
+          <validation-provider
+            v-slot="{ errors }"
+            name="password"
+            rules="required|min:4"
+          >
+            <text-input
+              v-model="model.password"
+              :value="model.password"
+              input-placeholder="Your password here!"
+              input-type="password"
+              input-id="password"
+              label-text="Password"
+              :error-text="errors[0]"
+            />
+          </validation-provider>
+
+          <button
+            class="w-full mt-3 py-3 bg-blue-600 hover:bg-blue-400 text-white rounded-sm"
+            type="submit"
+          >
+            Register
+          </button>
+        </form>
+      </ValidationObserver>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'RegistrationForm',
+  data: () => ({
+    model: {
+      name: '',
+      email: '',
+      password: ''
+    }
+  }),
+  methods: {
+    onSubmit() {
+      alert('Form has been submitted!');
+    }
+  }
+};
+</script>
