@@ -7,9 +7,11 @@ import webpack from 'webpack';
 import WebpackConfig from '../webpack.config';
 import webpackHotMiddleWare from 'webpack-hot-middleware';
 import webpackDevMiddleware from 'webpack-dev-middleware';
+import bodyParser from 'body-parser';
 
 Mongoose.connect(config.databaseUrl, { useNewUrlParser: true });
 const app = express();
+app.use(bodyParser.json());
 const compiler = webpack(WebpackConfig);
 app.use(webpackDevMiddleware(compiler));
 app.use(

@@ -11,7 +11,9 @@
       :placeholder="inputPlaceholder"
       @input="$emit('input', $event.target.value)"
     />
-    <span v-if="errorText" class="w-full py-3 text-red-400 p-1 mb-2">{{ errorText }}</span>
+    <span v-if="errorText" class="w-full py-3 text-red-400 p-1 mb-2">{{
+      errorText
+    }}</span>
   </section>
 </template>
 

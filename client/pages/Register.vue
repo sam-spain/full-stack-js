@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import { POST_REGISTER } from '@store/auth/actions.js';
 export default {
   name: 'RegistrationForm',
   data: () => ({
@@ -78,7 +79,7 @@ export default {
   }),
   methods: {
     onSubmit() {
-      alert('Form has been submitted!');
+      this.$store.dispatch(POST_REGISTER, this.model);
     }
   }
 };
