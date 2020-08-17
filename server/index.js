@@ -20,6 +20,7 @@ app.use(
     publicPath: WebpackConfig.output.publicPath
   })
 );
+app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(v1Router);
 app.get('*', (request, response) => {
   response.sendFile(path.resolve(__dirname, 'public/index.html'));

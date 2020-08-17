@@ -53,13 +53,11 @@
               :error-text="errors[0]"
             />
           </validation-provider>
-
-          <button
-            class="w-full mt-3 py-3 bg-blue-600 hover:bg-blue-400 text-white rounded-sm"
-            type="submit"
-          >
-            Register
-          </button>
+          <button-component
+            label="Register"
+            :disabled="loading"
+            :loading="loading"
+          />
         </form>
       </ValidationObserver>
     </div>
@@ -71,6 +69,7 @@ import { POST_REGISTER } from '@store/auth/actions.js';
 export default {
   name: 'RegistrationForm',
   data: () => ({
+    loading: false,
     model: {
       name: '',
       email: '',
@@ -79,7 +78,14 @@ export default {
   }),
   methods: {
     onSubmit() {
-      this.$store.dispatch(POST_REGISTER, this.model);
+      this.toggleLoading();
+      this.$store.dispatch(POST_REGISTER, this.model).then(() => {
+        this.toggleLoading();
+        this.$router.push('/');
+      });
+    },
+    toggleLoading() {
+      this.loading = !this.loading;
     }
   }
 };
