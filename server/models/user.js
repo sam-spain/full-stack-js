@@ -1,12 +1,14 @@
 import mongoose from 'mongoose';
+import jsonWebToken from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import randomString from 'randomstring';
 import config from '@config';
 import Mail from '@fullstackjs/mail';
+import uniqueValidator from 'mongoose-unique-validator';
 
 const UserSchema = new mongoose.Schema({
   name: String,
-  email: String,
+  email: { type: String, index: true, unique: true, required: true },
   createdAt: Date,
   updatedAt: Date,
   password: String,
@@ -30,5 +32,11 @@ UserSchema.post('save', async function () {
     })
     .send();
 });
+
+UserSchema.methods.generateToken = function () {
+  return jsonWebToken.sign({ id: this._id }, config.jsonWebTokenSecret);
+};
+
+UserSchema.plugin(uniqueValidator, { message: 'Email already exists' });
 
 export default mongoose.model('User', UserSchema);

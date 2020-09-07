@@ -4,7 +4,7 @@
       <h2 class="text-center text-3xl text-blue-700">
         Register
       </h2>
-      <ValidationObserver v-slot="{ handleSubmit }">
+      <ValidationObserver ref="form" v-slot="{ handleSubmit }">
         <form
           class="w-full bg-white shadow rounded-sm mt-5 p-12"
           @submit.prevent="handleSubmit(onSubmit)"
@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { POST_REGISTER } from '@store/auth/actions.js';
+import { POST_REGISTER, SET_AUTH } from '@store/auth/actions.js';
 export default {
   name: 'RegistrationForm',
   data: () => ({
@@ -79,10 +79,18 @@ export default {
   methods: {
     onSubmit() {
       this.toggleLoading();
-      this.$store.dispatch(POST_REGISTER, this.model).then(() => {
-        this.toggleLoading();
-        this.$router.push('/');
-      });
+      this.$store
+        .dispatch(POST_REGISTER, this.model)
+        .then((response) => {
+          this.toggleLoading();
+          localStorage.setItem('auth', JSON.stringify(response.data));
+          this.$store.commit(SET_AUTH, response.data);
+          this.$router.push('/');
+        })
+        .catch((error) => {
+          this.toggleLoading();
+          this.$refs.form.setErrors(error.response.data);
+        });
     },
     toggleLoading() {
       this.loading = !this.loading;

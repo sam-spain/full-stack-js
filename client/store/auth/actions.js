@@ -1,5 +1,5 @@
 import client from '@client/utils/axios.js';
-
+export const SET_AUTH = 'SET_AUTH';
 export const POST_REGISTER = 'POST_REGISTER';
 
 export default {
