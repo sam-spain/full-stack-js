@@ -5,7 +5,7 @@
       <router-link class="text-blue-400" to="/">
         MEVN
       </router-link>
-      <div>
+      <div v-if="!auth">
         <router-link class="no-underline text-blue-700" to="/auth/login">
           Sign In
         </router-link>
@@ -15,6 +15,14 @@
         >
           Join Now
         </router-link>
+      </div>
+      <div v-else>
+        <span
+          class="cursor-pointer text-blue-400 hover:text-blue-700"
+          @click="unsetAuth"
+        >
+          Logout
+        </span>
       </div>
     </div>
     <router-view />

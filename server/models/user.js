@@ -37,6 +37,10 @@ UserSchema.methods.generateToken = function () {
   return jsonWebToken.sign({ id: this._id }, config.jsonWebTokenSecret);
 };
 
+UserSchema.methods.comparePasswords = function (plainPassword) {
+  return bcrypt.compareSync(plainPassword, this.password);
+};
+
 UserSchema.plugin(uniqueValidator, { message: 'Email already exists' });
 
 export default mongoose.model('User', UserSchema);

@@ -1,23 +1,38 @@
 const { request, response } = require('express');
 
-import user from '@models/user.js';
+import User from '@models/user.js';
 
-const login = (request, response) => {};
+const login = async (request, response) => {
+  const { email, password } = request.body;
+  const user = await User.findOne({ email });
+  if (user) {
+    if (user.comparePasswords(password)) {
+      const token = user.generateToken();
+      return response.json({
+        user,
+        token
+      });
+    }
+  }
+  return response.status(400).json({
+    email: 'Could not get matching credentials to log in'
+  });
+};
 
 const register = async (request, response) => {
   const { name, email, password } = request.body;
-  await user.create(
+  await User.create(
     {
       name,
       email,
       password
     },
-    function (error, newUser) {
+    function (error, user) {
       if (error) {
         return response.status(422).json(convertDbErrorToFormError(error));
       } else {
-        const token = newUser.generateToken();
-        return response.status(201).json({ newUser, token });
+        const token = user.generateToken();
+        return response.status(201).json({ user, token });
       }
     }
   );

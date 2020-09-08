@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Main from './pages/main.vue';
+import AuthMixin from '@client/mixins/auth.js';
 import TextInput from '@components/TextInput.vue';
 import './styles/main.css';
 import router from './routes';
@@ -37,6 +38,7 @@ Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('TextInput', TextInput);
 Vue.component('ButtonComponent', button);
 Vue.component('Loader', loader);
+Vue.mixin(AuthMixin);
 
 Vue.use(VueRouter);
 

@@ -65,11 +65,12 @@
 </template>
 
 <script>
-import { POST_REGISTER, SET_AUTH } from '@store/auth/actions.js';
+import formMixin from '@client/mixins/form.js';
+import { POST_REGISTER } from '@store/auth/actions.js';
 export default {
   name: 'RegistrationForm',
+  mixins: [formMixin],
   data: () => ({
-    loading: false,
     model: {
       name: '',
       email: '',
@@ -83,17 +84,12 @@ export default {
         .dispatch(POST_REGISTER, this.model)
         .then((response) => {
           this.toggleLoading();
-          localStorage.setItem('auth', JSON.stringify(response.data));
-          this.$store.commit(SET_AUTH, response.data);
-          this.$router.push('/');
+          this.setAuth(response.data);
         })
         .catch((error) => {
           this.toggleLoading();
           this.$refs.form.setErrors(error.response.data);
         });
-    },
-    toggleLoading() {
-      this.loading = !this.loading;
     }
   }
 };
