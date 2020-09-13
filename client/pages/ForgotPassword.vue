@@ -2,7 +2,7 @@
   <div class="container my-16 w-full mx-auto">
     <div class="max-w-md mx-auto">
       <h2 class="text-center text-3xl text-blue-700">
-        Log In
+        Forgot Password
       </h2>
       <ValidationObserver ref="form" v-slot="{ handleSubmit }">
         <form
@@ -20,30 +20,10 @@
               input-placeholder="Your email here!"
               input-type="email"
               input-id="email"
-              label-text="Email"
+              label-text="Send Password Reset Link"
               :error-text="errors[0]"
             />
           </validation-provider>
-          <validation-provider
-            v-slot="{ errors }"
-            name="password"
-            rules="required|min:4"
-          >
-            <text-input
-              v-model="model.password"
-              :value="model.password"
-              input-placeholder="Your password here!"
-              input-type="password"
-              input-id="password"
-              label-text="Password"
-              :error-text="errors[0]"
-            />
-          </validation-provider>
-          <div class="my-5">
-            <router-link to="/auth/password/email" class="text-blue-700 text-center">
-              Forgotten password? Click here.
-            </router-link>
-          </div>
           <button-component label="Log In" :disabled="loading" :loading="loading" />
         </form>
       </ValidationObserver>
@@ -53,24 +33,23 @@
 
 <script>
 import formMixin from '@client/mixins/form.js';
-import { POST_LOGIN } from '@store/auth/actions.js';
+import { POST_FORGOT_PASSWORD } from '@store/auth/actions.js';
 export default {
-  name: 'LogInForm',
+  name: 'ForgotPasswordForm',
   mixins: [formMixin],
   data: () => ({
     model: {
-      email: '',
-      password: ''
+      email: ''
     }
   }),
   methods: {
     onSubmit() {
       this.toggleLoading();
       this.$store
-        .dispatch(POST_LOGIN, this.model)
+        .dispatch(POST_FORGOT_PASSWORD, this.model)
         .then((response) => {
           this.toggleLoading();
-          this.setAuth(response.data);
+          this.$router.push('/');
         })
         .catch((error) => {
           this.toggleLoading();

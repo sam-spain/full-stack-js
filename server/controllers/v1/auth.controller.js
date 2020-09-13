@@ -38,9 +38,19 @@ const register = async (request, response) => {
   );
 };
 
+const forgotPassword = async (request, response) => {
+  const { email } = request.body;
+  const user = await User.findOne({ email });
+  await user.forgotPassword();
+  return response.json({
+    message: 'Password reset'
+  });
+};
+
 export default {
   login,
-  register
+  register,
+  forgotPassword
 };
 
 function convertDbErrorToFormError(error) {

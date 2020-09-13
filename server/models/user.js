@@ -3,8 +3,9 @@ import jsonWebToken from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import randomString from 'randomstring';
 import config from '@config';
-import Mail from '@fullstackjs/mail';
 import uniqueValidator from 'mongoose-unique-validator';
+import PasswordReset from '@models/PasswordReset.js';
+import sendMail from 'server/config/mailconfig.js';
 
 const UserSchema = new mongoose.Schema({
   name: String,
@@ -22,15 +23,11 @@ UserSchema.pre('save', function () {
   this.createdAt = new Date();
 });
 
-UserSchema.post('save', async function () {
-  await new Mail('confirm-account')
-    .to(this.email, this.name)
-    .subject('Please confirm your account')
-    .data({
-      name: this.name,
-      url: `${config.url}/auth/emails/confirm/${this.emailConfirmCode}`
-    })
-    .send();
+UserSchema.post('save', function () {
+  sendMail('confirm-account', this.email, {
+    name: this.name,
+    url: `${config.url}/auth/emails/confirm/${this.emailConfirmCode}`
+  });
 });
 
 UserSchema.methods.generateToken = function () {
@@ -39,6 +36,19 @@ UserSchema.methods.generateToken = function () {
 
 UserSchema.methods.comparePasswords = function (plainPassword) {
   return bcrypt.compareSync(plainPassword, this.password);
+};
+
+UserSchema.methods.forgotPassword = async function () {
+  const token = randomString.generate(72);
+  await PasswordReset.create({
+    token,
+    email: this.email,
+    createdAt: new Date()
+  });
+  sendMail('forgot-password', this.email, {
+    name: this.name,
+    url: `${config.url}/auth/password/reset${token}`
+  });
 };
 
 UserSchema.plugin(uniqueValidator, { message: 'Email already exists' });
