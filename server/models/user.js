@@ -12,7 +12,10 @@ const UserSchema = new mongoose.Schema({
   email: { type: String, index: true, unique: true, required: true },
   createdAt: Date,
   updatedAt: Date,
-  password: String,
+  password: {
+    type: String,
+    min: [4, 'The password field must be at least 4 characters']
+  },
   emailConfirmedAt: Date,
   emailConfirmCode: String
 });
@@ -47,7 +50,7 @@ UserSchema.methods.forgotPassword = async function () {
   });
   sendMail('forgot-password', this.email, {
     name: this.name,
-    url: `${config.url}/auth/password/reset${token}`
+    url: `${config.url}/auth/password/reset/${token}`
   });
 };
 

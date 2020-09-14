@@ -24,9 +24,9 @@ const email = new EmailTemplate({
   }
 });
 
-export default function sendMail(template, recipient, templateVariables) {
+export default function sendMail(templateName, recipient, templateVariables) {
   email.send({
-    template: template,
+    template: templateName,
     message: {
       to: recipient
     },
