@@ -1,4 +1,8 @@
-import { SET_AUTH, UNSET_AUTH } from '@store/auth/actions.js';
+import {
+  SET_AUTH,
+  UNSET_AUTH,
+  POST_RESEND_CONFIRM_EMAIL
+} from '@store/auth/actions.js';
 
 export default {
   computed: {
@@ -19,6 +23,16 @@ export default {
       localStorage.removeItem('auth');
       this.$store.commit(UNSET_AUTH);
       this.$router.push('/').catch(() => {});
+    },
+    resendEmailConfirm() {
+      this.$store
+        .dispatch(POST_RESEND_CONFIRM_EMAIL)
+        .then(() => {
+          this.$router.push('/');
+        })
+        .catch(() => {
+          this.$router.push('/');
+        });
     }
   }
 };

@@ -1,5 +1,13 @@
 <template>
   <div>
+    <div
+      class="w-full h-12 text-blue-700 bg-blue-300 flex items-center justify-center"
+    >
+      You have not confirmed your email address.
+      <span class="cursor-pointer hover:text-blue-900" @click="resendEmailConfirm">
+        &nbsp;Click here to resend confirmation link.
+      </span>
+    </div>
     <div class="h-2 w-full bg-blue-400" />
     <div class="w-full h-12 flex items-center justify-between px-6">
       <router-link class="text-blue-400" to="/">
