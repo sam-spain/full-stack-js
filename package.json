@@ -32,6 +32,7 @@
     "mongoose-unique-validator": "^2.0.3",
     "nodemailer": "^6.4.11",
     "randomstring": "^1.1.5",
+    "uuid": "^8.3.0",
     "vee-validate": "^3.3.8",
     "vue": "^2.6.11",
     "vue-router": "^3.3.4",

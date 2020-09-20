@@ -25,6 +25,7 @@ export default {
     unsetAuth() {
       localStorage.removeItem('auth');
       this.$store.commit(UNSET_AUTH);
+      this.flash('Successfully logged out.');
       this.$router.push('/').catch(() => {});
     },
     resendEmailConfirm() {
