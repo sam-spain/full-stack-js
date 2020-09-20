@@ -136,15 +136,14 @@ const confirmEmail = async (request, response) => {
 };
 
 const resendConfirmEmail = async (request, response) => {
-  if(!request.user.emailConfirmedAt) {
-    await request.user.resendConfirmEmail();
+  if (!request.user.emailConfirmedAt) {
+    await request.user.sendConfirmEmail();
   } else {
     return response.json({
       message: 'Email confirm sent.'
-    })
+    });
   }
-  
-}
+};
 
 export default {
   login,

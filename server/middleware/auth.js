@@ -5,7 +5,7 @@ import config from '@config';
 export default async (request, response, next) => {
   try {
     const token = request.headers.access_token;
-    const data = jwt.verify(token, config.jwt);
+    const data = jwt.verify(token, config.jsonWebTokenSecret);
     const user = await User.findById(data.id);
     if (!user) {
       throw new Error();

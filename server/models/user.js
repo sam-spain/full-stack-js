@@ -27,19 +27,19 @@ UserSchema.pre('save', function () {
 });
 
 UserSchema.post('save', async function () {
-  await this.sendConfirmEmail()
+  await this.sendConfirmEmail();
 });
 
 UserSchema.methods.generateToken = function () {
   return jsonWebToken.sign({ id: this._id }, config.jsonWebTokenSecret);
 };
 
-UserSchema.methods.sendConfirmEmail = function() {
+UserSchema.methods.sendConfirmEmail = function () {
   sendMail('confirm-account', this.email, {
     name: this.name,
     url: `${config.url}/auth/emails/confirm/${this.emailConfirmCode}`
   });
-}
+};
 
 UserSchema.methods.comparePasswords = function (plainPassword) {
   return bcrypt.compareSync(plainPassword, this.password);

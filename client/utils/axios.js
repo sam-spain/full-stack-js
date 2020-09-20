@@ -5,11 +5,17 @@ const axios = Axios.create({
 });
 
 axios.interceptors.request.use(function (config) {
-  const token = JSON.parse(window.localStorage.getItem('auth')).token;
-  config.headers = {
-    access_token: token
-  };
-  return config;
+  try {
+    const token = JSON.parse(window.localStorage.getItem('auth')).token;
+    if (token) {
+      config.headers = {
+        access_token: token
+      };
+    }
+    return config;
+  } catch {
+    return config;
+  }
 });
 
 export default axios;
