@@ -4,6 +4,7 @@ import Register from '@web-page/Register.vue';
 import Home from '@web-page/Home.vue';
 import ForgotPassword from '@web-page/ForgotPassword.vue';
 import ResetPassword from '@web-page/ResetPassword.vue';
+import EmailConfirm from '@web-page/EmailConfirm.vue';
 
 export default new VueRouter({
   mode: 'history',
@@ -27,6 +28,10 @@ export default new VueRouter({
     {
       path: '/auth/password/reset/:token',
       component: ResetPassword
+    },
+    {
+      path: '/auth/emails/confirm/:token',
+      component: EmailConfirm
     }
   ]
 });
