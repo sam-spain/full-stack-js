@@ -1,6 +1,7 @@
 <template>
   <div>
     <div
+      v-if="auth && !confirmed"
       class="w-full h-12 text-blue-700 bg-blue-300 flex items-center justify-center"
     >
       You have not confirmed your email address.

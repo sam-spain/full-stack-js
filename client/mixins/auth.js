@@ -11,6 +11,9 @@ export default {
     },
     user() {
       return this.$store.state.auth.user;
+    },
+    confirmed() {
+      return !!this.$store.state.auth.user.emailConfirmedAt;
     }
   },
   methods: {
