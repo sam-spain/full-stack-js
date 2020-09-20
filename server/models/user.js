@@ -26,16 +26,20 @@ UserSchema.pre('save', function () {
   this.createdAt = new Date();
 });
 
-UserSchema.post('save', function () {
-  sendMail('confirm-account', this.email, {
-    name: this.name,
-    url: `${config.url}/auth/emails/confirm/${this.emailConfirmCode}`
-  });
+UserSchema.post('save', async function () {
+  await this.sendConfirmEmail()
 });
 
 UserSchema.methods.generateToken = function () {
   return jsonWebToken.sign({ id: this._id }, config.jsonWebTokenSecret);
 };
+
+UserSchema.methods.sendConfirmEmail = function() {
+  sendMail('confirm-account', this.email, {
+    name: this.name,
+    url: `${config.url}/auth/emails/confirm/${this.emailConfirmCode}`
+  });
+}
 
 UserSchema.methods.comparePasswords = function (plainPassword) {
   return bcrypt.compareSync(plainPassword, this.password);

@@ -1,6 +1,7 @@
 import User from '@models/user.js';
 import PasswordReset from '@models/PasswordReset.js';
 import BCrypt from 'bcryptjs';
+import { request, response } from 'express';
 
 async function deleteToken(existingPasswordReset) {
   await PasswordReset.findOneAndDelete({
@@ -134,10 +135,22 @@ const confirmEmail = async (request, response) => {
   }
 };
 
+const resendConfirmEmail = async (request, response) => {
+  if(!request.user.emailConfirmedAt) {
+    await request.user.resendConfirmEmail();
+  } else {
+    return response.json({
+      message: 'Email confirm sent.'
+    })
+  }
+  
+}
+
 export default {
   login,
   register,
   forgotPassword,
   resetPassword,
-  confirmEmail
+  confirmEmail,
+  resendConfirmEmail
 };

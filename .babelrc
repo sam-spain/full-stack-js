@@ -18,7 +18,8 @@
                     "@components" : "./client/components",
                     "@client": "./client/",
                     "@store" : "./client/store",
-                    "@models" : "./server/models"
+                    "@models" : "./server/models",
+                    "@middleware": "./server/middleware"
                 }
             }
         ]
