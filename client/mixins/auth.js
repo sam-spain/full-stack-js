@@ -28,10 +28,10 @@ export default {
       this.$store
         .dispatch(POST_RESEND_CONFIRM_EMAIL)
         .then(() => {
-          this.$router.push('/');
+          this.$router.push('/').catch(()=>{});
         })
         .catch(() => {
-          this.$router.push('/');
+          this.$router.push('/').catch(()=>{});
         });
     }
   }
