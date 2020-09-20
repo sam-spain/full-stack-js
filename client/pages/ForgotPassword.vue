@@ -49,6 +49,7 @@ export default {
         .dispatch(POST_FORGOT_PASSWORD, this.model)
         .then((response) => {
           this.toggleLoading();
+          this.flash('Reset link success. Expires in 5 minutes');
           this.$router.push('/');
         })
         .catch((error) => {

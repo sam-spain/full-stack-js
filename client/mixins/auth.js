@@ -32,9 +32,11 @@ export default {
       this.$store
         .dispatch(POST_RESEND_CONFIRM_EMAIL)
         .then(() => {
+          this.flash('Resend success');
           this.$router.push('/').catch(() => {});
         })
         .catch(() => {
+          this.flash('Resend error', 'error');
           this.$router.push('/').catch(() => {});
         });
     }

@@ -84,6 +84,7 @@ export default {
         .dispatch(POST_REGISTER, this.model)
         .then((response) => {
           this.toggleLoading();
+          this.flash('Register success');
           this.setAuth(response.data);
         })
         .catch((error) => {

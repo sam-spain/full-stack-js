@@ -56,6 +56,7 @@ export default {
         })
         .then((response) => {
           this.toggleLoading();
+          this.flash('Reset success');
           this.$router.push('/');
         })
         .catch((error) => {

@@ -14,9 +14,11 @@ export default {
         token: this.$route.params.token
       })
       .then((response) => {
+        this.flash('Confirm success');
         this.setAuth(response.data);
       })
       .catch(() => {
+        this.flash('Confirm error', 'error');
         this.$router.push('/');
       });
   }

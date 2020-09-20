@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Main from './pages/main.vue';
 import AuthMixin from '@client/mixins/auth.js';
-import FlashMixin from '@client/mixins/flash'
+import FlashMixin from '@client/mixins/flash';
 import TextInput from '@components/TextInput.vue';
 import './styles/main.css';
 import router from './routes';
