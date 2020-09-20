@@ -70,6 +70,7 @@ export default {
         .dispatch(POST_LOGIN, this.model)
         .then((response) => {
           this.toggleLoading();
+          this.flash('Sign in success');
           this.setAuth(response.data);
         })
         .catch((error) => {

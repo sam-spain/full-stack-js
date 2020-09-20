@@ -9,6 +9,7 @@
         &nbsp;Click here to resend confirmation link.
       </span>
     </div>
+    <flash />
     <div class="h-2 w-full bg-blue-400" />
     <div class="w-full h-12 flex items-center justify-between px-6">
       <router-link class="text-blue-400" to="/">
@@ -39,7 +40,11 @@
 </template>
 
 <script>
+import Flash from '@components/Flash.vue';
 export default {
-  name: 'MainComponent'
+  name: 'MainComponent',
+  components: {
+    Flash
+  }
 };
 </script>
